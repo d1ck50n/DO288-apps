@@ -6,6 +6,8 @@ MAINTAINER   Red Hat Training <training@redhat.com>
 ENV	  JAVA_OPTIONS -Xmx512m
 
 
+RUN echo "=========== in docker file now ==========="
+
 # Install the Java runtime, create a user for running the app, and set permissions
 RUN   yum install -y --disableplugin=subscription-manager java-1.8.0-openjdk-headless && \
       yum clean all --disableplugin=subscription-manager -y && \
@@ -13,8 +15,8 @@ RUN   yum install -y --disableplugin=subscription-manager java-1.8.0-openjdk-hea
       mkdir -p /opt/app-root/bin
 
 # Copy the runnable fat JAR to the container.
+# ADD   https://github.com/RedHatTraining/DO288-apps/releases/download/OCP-4.1-1/hello-java.jar /opt/app-root/bin/
 ADD   https://github.com/RedHatTraining/DO288-apps/releases/download/OCP-4.1-1/hello-java.jar /opt/app-root/bin/
-
 COPY  run-app.sh /opt/app-root/bin/
 
 #RUN   chown -R 1001:1001 /opt/app-root && \
