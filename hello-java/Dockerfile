@@ -20,11 +20,10 @@ COPY  run-app.sh /opt/app-root/bin/
 #RUN   chown -R wildfly:wildfly /opt/app-root && \
 #      chmod -R 700 /opt/app-root
 
-RUN chgrp -R 0 /opt/app-root/
+RUN chmod 777 -R /opt/app-root/
 
 EXPOSE 8080
 
-USER  1001
 
 # Run the fat JAR
 CMD   /opt/app-root/bin/run-app.sh
